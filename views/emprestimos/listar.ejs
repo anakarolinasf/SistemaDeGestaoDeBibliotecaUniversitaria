@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Empréstimos</title>
+    <link rel="stylesheet" href="/style.css">
+    
+    <style>
+        .status-ok { color: var(--success-color); font-weight: bold; }
+        .status-atraso { color: #e67e22; font-weight: bold; }
+        .multa-sim { color: var(--danger-color); font-weight: bold; }
+        .multa-nao { color: var(--success-color); font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h1>🔖 Controle de Empréstimos</h1>
+    
+    <a href="/emprestimos/criar" class="btn-new">+ Novo Empréstimo</a>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Usuário</th>
+                <th>Livro</th>
+                <th>Retirada</th>
+                <th>Devolução</th>
+                <th>Multa</th>
+                <th style="text-align: center;">Ação</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if (emprestimos.length > 0) { %>
+                <% emprestimos.forEach(emp => { %>
+                <tr>
+                    <td><%= emp.id_emprestimo %></td>
+                    <td><%= emp.Usuario ? emp.Usuario.nome : '---' %></td>
+                    <td><i><%= emp.Livro ? emp.Livro.titulo : '---' %></i></td>
+                    <td><%= emp.data_retirada %></td>
+                    
+                    <td>
+                        <% if (emp.data_devolucao && new Date(emp.data_devolucao) <= new Date()) { %>
+                            <span class="status-ok"><%= emp.data_devolucao %> (Ok)</span>
+                        <% } else { %>
+                            <span class="status-atraso"><%= emp.data_devolucao || 'Pendente' %></span>
+                        <% } %>
+                    </td>
+
+                    <td class="<%= emp.multa > 0 ? 'multa-sim' : 'multa-nao' %>">
+                        R$ <%= emp.multa %>
+                    </td>
+                    
+                    <td style="text-align: center;">
+                        <a href="/emprestimos/devolver/<%= emp.id_emprestimo %>" title="Registrar Devolução">✅ Devolver</a>
+                        <a href="/emprestimos/editar/<%= emp.id_emprestimo %>" title="Editar Detalhes" style="margin-left: 10px; color: #999;">⚙️</a>
+                    </td>
+                </tr>
+                <% }) %>
+            <% } else { %>
+                <tr>
+                    <td colspan="7" style="text-align: center;">Nenhum empréstimo registrado.</td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+
+    <a href="/">⬅ Voltar para o Início</a>
+</body>
+</html>

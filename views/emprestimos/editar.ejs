@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Empréstimo</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <h1>✏️ Editar Empréstimo</h1>
+    <p style="text-align: center; color: #666; margin-bottom: 20px;">Use esta tela para corrigir datas ou multas manualmente.</p>
+
+    <form action="/emprestimos/editar" method="POST">
+        <input type="hidden" name="id_emprestimo" value="<%= emprestimo.id_emprestimo || emprestimo.id %>">
+
+        <label>Usuário</label>
+        <select name="id_usuario" required>
+            <% usuarios.forEach(usuario => { %>
+                <option value="<%= usuario.id %>" 
+                    <%= usuario.id == emprestimo.id_usuario ? 'selected' : '' %>>
+                    <%= usuario.nome %> (Mat: <%= usuario.matricula %>)
+                </option>
+            <% }) %>
+        </select>
+
+        <label>Livro</label>
+        <select name="id_livro" required>
+            <% livros.forEach(livro => { %>
+                <option value="<%= livro.id_livro || livro.id %>" 
+                    <%= (livro.id_livro || livro.id) == emprestimo.id_livro ? 'selected' : '' %>>
+                    <%= livro.titulo %>
+                </option>
+            <% }) %>
+        </select>
+
+        <div style="display: flex; gap: 20px;">
+            <div style="flex: 1;">
+                <label>Data Retirada</label>
+                <input type="date" name="data_retirada" value="<%= emprestimo.data_retirada %>" required>
+            </div>
+            <div style="flex: 1;">
+                <label>Data Devolução</label>
+                <input type="date" name="data_devolucao" value="<%= emprestimo.data_devolucao %>">
+            </div>
+        </div>
+        
+        <label>Multa (R$)</label>
+        <input type="number" step="0.01" name="multa" value="<%= emprestimo.multa %>">
+
+        <button type="submit">Salvar Alterações</button>
+    </form>
+
+    <a href="/emprestimos">Cancelar</a>
+</body>
+</html>

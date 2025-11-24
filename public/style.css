@@ -1,0 +1,218 @@
+:root {
+    --primary-color: #dfa3b5; 
+    --accent-color: #cbb2d6; 
+    --success-color: #88d8b0; 
+    --danger-color: #ff8b94;  
+    --text-dark: #5d5363;
+    --text-light: #ffffff;
+    --bg-color: #fff5f8;      
+    --card-bg: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-dark);
+    line-height: 1.6;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+h1 {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: 700;
+    text-shadow: 1px 1px 2px rgba(223, 163, 181, 0.3);
+}
+
+a {
+    text-decoration: none;
+    color: #a685b8;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+a:hover {
+    color: var(--primary-color);
+}
+
+button, .btn {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 20px;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.3s;
+    box-shadow: 0 4px 6px rgba(223, 163, 181, 0.3);
+}
+
+button:hover {
+    background-color: var(--accent-color);
+    transform: translateY(-2px);
+}
+
+body > a:first-of-type {
+    background-color: var(--success-color);
+    color: white;
+    padding: 10px 15px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    display: inline-block;
+    box-shadow: 0 4px 6px rgba(136, 216, 176, 0.3);
+}
+
+body > a:first-of-type:hover {
+    background-color: #72c59d;
+    color: white;
+}
+
+table {
+    width: 100%;
+    max-width: 1000px;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background-color: var(--card-bg);
+    box-shadow: 0 10px 20px rgba(203, 178, 214, 0.2);
+    border-radius: 15px;
+    overflow: hidden; 
+}
+
+thead {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+}
+
+th, td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #f0e6ed;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #fdfaff; 
+}
+
+tbody tr:hover {
+    background-color: #fcebf0;
+}
+
+td a {
+    margin-right: 10px;
+    font-size: 0.95rem;
+}
+
+td a[onclick] {
+    color: var(--danger-color);
+}
+
+td a[onclick]:hover {
+    color: #e57373;
+}
+
+form {
+    background-color: var(--card-bg);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(203, 178, 214, 0.2);
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    border: 1px solid #f3e5f5;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #a685b8;
+    font-weight: 600;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="number"],
+input[type="date"],
+select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 2px solid #f3e5f5;
+    border-radius: 10px;
+    font-size: 1rem;
+    background-color: #fffbfd;
+    transition: 0.3s;
+}
+
+input:focus, select:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    background-color: #fff;
+}
+
+button[type="submit"] {
+    width: 100%;
+    background-color: var(--success-color);
+    margin-top: 10px;
+}
+
+button[type="submit"]:hover {
+    background-color: #72c59d;
+}
+
+ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    padding: 0;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+ul li a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 100px;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(203, 178, 214, 0.2);
+    color: var(--primary-color);
+    font-size: 1.2rem;
+    font-weight: bold;
+    border: 2px solid transparent;
+    transition: 0.3s;
+}
+
+ul li a:hover {
+    border-color: var(--accent-color);
+    background-color: #fdfaff;
+    color: var(--accent-color);
+    transform: translateY(-5px); 
+    box-shadow: 0 8px 20px rgba(223, 163, 181, 0.4);
+}
+
+body > a:last-child {
+    margin-top: 20px;
+    color: #9fa8da;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+body > a:last-child:hover {
+    color: var(--primary-color);
+    text-decoration: underline;
+}

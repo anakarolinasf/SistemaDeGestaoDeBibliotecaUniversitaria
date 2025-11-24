@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Novo Empréstimo</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <h1>🔖 Registrar Empréstimo</h1>
+    
+    <form action="/emprestimos/salvar" method="POST">
+        
+        <label>Quem vai retirar?</label>
+        <select name="id_usuario" required>
+            <option value="" disabled selected>Selecione o Usuário...</option>
+            <% usuarios.forEach(usuario => { %>
+                <option value="<%= usuario.id %>">
+                    <%= usuario.nome %> (Mat: <%= usuario.matricula %>)
+                </option>
+            <% }) %>
+        </select>
+
+        <label>Qual livro?</label>
+        <select name="id_livro" required>
+            <option value="" disabled selected>Selecione o Livro...</option>
+            <% livros.forEach(livro => { %>
+                <option value="<%= livro.id_livro %>">
+                    <%= livro.titulo %>
+                </option>
+            <% }) %>
+        </select>
+
+        <label>Data de Retirada</label>
+        <input type="date" name="data_retirada" required>
+
+        <label>Data de Devolução Prevista</label>
+        <input type="date" name="data_devolucao">
+
+        <button type="submit">Confirmar Empréstimo</button>
+    </form>
+
+    <a href="/emprestimos">Cancelar</a>
+</body>
+</html>

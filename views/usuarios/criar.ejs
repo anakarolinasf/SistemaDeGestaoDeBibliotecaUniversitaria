@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Novo Usuário</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <h1>👤 Novo Usuário</h1>
+    
+    <form action="/usuarios/salvar" method="POST">
+        <label>Nome Completo</label>
+        <input type="text" name="nome" required placeholder="Seu nome">
+
+        <label>Matrícula</label>
+        <input type="text" name="matricula" required placeholder="Ex: 2210505">
+
+        <label>Email Institucional</label>
+        <input type="email" name="email" required placeholder="aluno@unifor.br">
+
+        <button type="submit">Salvar Cadastro</button>
+    </form>
+
+    <a href="/usuarios">Cancelar</a>
+</body>
+</html>

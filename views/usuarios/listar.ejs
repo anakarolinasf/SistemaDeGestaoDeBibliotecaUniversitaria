@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciar Usuários</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <h1>👥 Gerenciar Usuários</h1>
+    
+    <a href="/usuarios/criar" class="btn-new">+ Novo Usuário</a>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Matrícula</th>
+                <th>Email</th>
+                <th style="text-align: center;">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if (usuarios.length > 0) { %>
+                <% usuarios.forEach(usuario => { %>
+                <tr>
+                    <td><%= usuario.id_usuario || usuario.id %></td>
+                    <td><strong><%= usuario.nome %></strong></td>
+                    <td><%= usuario.matricula %></td>
+                    <td><%= usuario.email %></td>
+                    
+                    <td style="text-align: center;">
+                        <a href="/usuarios/editar/<%= usuario.id_usuario || usuario.id %>" title="Editar" style="text-decoration: none;">✏️</a>
+                        
+                        <a href="/usuarios/deletar/<%= usuario.id_usuario || usuario.id %>" 
+                           title="Excluir" 
+                           style="text-decoration: none; margin-left: 10px;"
+                           onclick="return confirm('Tem certeza que deseja excluir este usuário?');">
+                           🗑️
+                        </a>
+                    </td>
+                </tr>
+                <% }) %>
+            <% } else { %>
+                <tr>
+                    <td colspan="5" style="text-align: center;">Nenhum usuário cadastrado.</td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+
+    <a href="/">⬅ Voltar para o Início</a>
+</body>
+</html>

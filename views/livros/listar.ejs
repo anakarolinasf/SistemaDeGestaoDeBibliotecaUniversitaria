@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Gerenciar Livros</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <h1>📚 Gerenciar Livros</h1>
+    
+    <a href="/livros/criar" class="btn-new">+ Novo Livro</a>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Título</th>
+                <th>Autor</th>
+                <th>Ano</th>
+                <th style="text-align: center;">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if (livros.length > 0) { %>
+                <% livros.forEach(livro => { %>
+                <tr>
+                    <td><%= livro.id_livro || livro.id %></td>
+                    <td><strong><%= livro.titulo %></strong></td>
+                    <td><%= livro.autor %></td>
+                    <td><%= livro.ano_publicacao || livro.ano %></td>
+                    
+                    <td style="text-align: center;">
+                        <a href="/livros/editar/<%= livro.id_livro || livro.id %>" 
+                           title="Editar">✏️</a>
+                        
+                        <a href="/livros/deletar/<%= livro.id_livro || livro.id %>" 
+                           title="Excluir"
+                           style="margin-left: 10px;"
+                           onclick="return confirm('Tem certeza que deseja excluir este livro?');">🗑️</a>
+                    </td>
+                </tr>
+                <% }) %>
+            <% } else { %>
+                <tr>
+                    <td colspan="5" style="text-align: center;">Nenhum livro cadastrado.</td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+
+    <a href="/">⬅ Voltar para o Início</a>
+</body>
+</html>
