@@ -44,7 +44,6 @@
 
             function validarAno() {
                 const hasNonDigit = /\D/.test(ano.value);
-                // allow empty year (placeholder) but if present must be digits
                 const isOk = ano.value.trim() === '' ? true : !hasNonDigit;
                 warnAno.classList.toggle('show', !isOk);
                 return isOk;

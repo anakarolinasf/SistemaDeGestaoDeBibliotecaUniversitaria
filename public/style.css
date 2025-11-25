@@ -217,7 +217,6 @@ body > a:last-child:hover {
     text-decoration: underline;
 }
 
-/* Warning message for form validation (inline, non-intrusive) */
 .warning {
     display: none;
     color: #7a1f1f;
@@ -236,7 +235,6 @@ body > a:last-child:hover {
     box-shadow: 0 4px 10px rgba(255, 139, 148, 0.15);
 }
 
-/* Icon styles */
 .page-icon {
     width: 28px;
     height: 28px;
@@ -245,7 +243,6 @@ body > a:last-child:hover {
     filter: none;
 }
 
-/* Size helper classes for icons */
 .page-icon--large {
     width: 48px;
     height: 48px;

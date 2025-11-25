@@ -57,7 +57,6 @@ module.exports = {
     async editar(req, res) {
         const { id_livro, titulo, autor, ano_publicacao, categoria } = req.body;
 
-        // === VALIDAÇÕES ===
         if (!titulo || titulo.trim() === "") {
             return res.send(`
                 <script>
