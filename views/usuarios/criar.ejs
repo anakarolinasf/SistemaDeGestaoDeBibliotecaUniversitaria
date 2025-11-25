@@ -9,22 +9,54 @@
 <body>
     <h1>👤 Novo Usuário</h1>
     
-    <form action="/usuarios/salvar" method="POST">
+    <form id="formUsuarioCriar" action="/usuarios/salvar" method="POST">
         <label>Nome Completo</label>
-        <input type="text" name="nome" required 
-               oninput="this.value = this.value.replace(/[0-9]/g, '')"
-               placeholder="Apenas letras">
+        <input id="nomeUsuario" type="text" name="nome" required placeholder="Apenas letras">
+        <span id="warningNomeUsuario" class="warning" role="alert">O nome não pode conter números.</span>
 
         <label>Matrícula</label>
-        <input type="text" name="matricula" required 
-               oninput="this.value = this.value.replace(/\D/g, '')"
-               placeholder="Apenas números"
+        <input id="matriculaUsuario" type="text" name="matricula" required placeholder="Apenas números">
+        <span id="warningMatriculaUsuario" class="warning" role="alert">A matrícula deve conter apenas números.</span>
 
         <label>Email Institucional</label>
         <input type="email" name="email" required placeholder="aluno@unifor.br">
 
         <button type="submit">Salvar Cadastro</button>
     </form>
+
+    <script>
+        (function(){
+            const nome = document.getElementById('nomeUsuario');
+            const matricula = document.getElementById('matriculaUsuario');
+            const warnNome = document.getElementById('warningNomeUsuario');
+            const warnMat = document.getElementById('warningMatriculaUsuario');
+            const form = document.getElementById('formUsuarioCriar');
+
+            function validarNome() {
+                const hasDigit = /\d/.test(nome.value);
+                warnNome.classList.toggle('show', hasDigit);
+                return !hasDigit;
+            }
+
+            function validarMatricula() {
+                const hasNonDigit = /\D/.test(matricula.value);
+                warnMat.classList.toggle('show', hasNonDigit);
+                return !hasNonDigit && matricula.value.trim() !== '';
+            }
+
+            nome.addEventListener('input', validarNome);
+            matricula.addEventListener('input', validarMatricula);
+
+            form.addEventListener('submit', function(e){
+                const okNome = validarNome();
+                const okMat = validarMatricula();
+                if (!okNome || !okMat) {
+                    e.preventDefault();
+                    (okNome ? matricula : nome).focus();
+                }
+            });
+        })();
+    </script>
 
     <a href="/usuarios">Cancelar</a>
 </body>

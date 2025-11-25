@@ -216,3 +216,22 @@ body > a:last-child:hover {
     color: var(--primary-color);
     text-decoration: underline;
 }
+
+/* Warning message for form validation (inline, non-intrusive) */
+.warning {
+    display: none;
+    color: #7a1f1f;
+    background-color: #ffe9e9;
+    border: 1px solid #ffb3b3;
+    padding: 8px 10px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    margin-top: -12px;
+    margin-bottom: 12px;
+}
+.warning.show {
+    display: block;
+}
+.warning[role="alert"] {
+    box-shadow: 0 4px 10px rgba(255, 139, 148, 0.15);
+}

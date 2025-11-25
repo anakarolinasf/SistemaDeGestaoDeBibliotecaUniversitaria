@@ -14,10 +14,12 @@
         <input type="text" name="titulo" required placeholder="Ex: O Senhor dos Anéis">
 
         <label>Autor</label>
-        <input type="text" name="autor" required placeholder="Ex: J.R.R. Tolkien">
+        <input id="autorLivro" type="text" name="autor" required placeholder="Ex: J.R.R. Tolkien">
+        <span id="warningAutorLivro" class="warning" role="alert">O nome do autor não pode conter números.</span>
 
         <label>Ano de Publicação</label>
-        <input type="number" name="ano_publicacao" placeholder="Ex: 1954">
+        <input id="anoLivro" type="text" name="ano_publicacao" placeholder="Ex: 1954">
+        <span id="warningAnoLivro" class="warning" role="alert">O ano de publicação deve ser numérico.</span>
 
         <label>Categoria</label>
         <input type="text" name="categoria" placeholder="Ex: Fantasia">
@@ -26,5 +28,40 @@
     </form>
 
     <a href="/livros">Cancelar</a>
+    <script>
+        (function(){
+            const autor = document.getElementById('autorLivro');
+            const ano = document.getElementById('anoLivro');
+            const warnAutor = document.getElementById('warningAutorLivro');
+            const warnAno = document.getElementById('warningAnoLivro');
+            const form = document.querySelector('form[action="/livros/salvar"]');
+
+            function validarAutor() {
+                const hasDigit = /\d/.test(autor.value);
+                warnAutor.classList.toggle('show', hasDigit);
+                return !hasDigit;
+            }
+
+            function validarAno() {
+                const hasNonDigit = /\D/.test(ano.value);
+                // allow empty year (placeholder) but if present must be digits
+                const isOk = ano.value.trim() === '' ? true : !hasNonDigit;
+                warnAno.classList.toggle('show', !isOk);
+                return isOk;
+            }
+
+            autor.addEventListener('input', validarAutor);
+            ano.addEventListener('input', validarAno);
+
+            form.addEventListener('submit', function(e){
+                const okAutor = validarAutor();
+                const okAno = validarAno();
+                if (!okAutor || !okAno) {
+                    e.preventDefault();
+                    (okAutor ? ano : autor).focus();
+                }
+            });
+        })();
+    </script>
 </body>
 </html>
