@@ -14,6 +14,39 @@ module.exports = {
 
     async salvar(req, res) {
         const { nome, matricula, email } = req.body;
+
+        // === VALIDAÇÕES ===
+
+        // Nome só pode ter letras e espaços
+        if (!/^[A-Za-zÀ-ÿ\s]+$/.test(nome)) {
+            return res.send(`
+                <script>
+                    alert("Erro: O nome não pode conter números ou caracteres inválidos!");
+                    window.location.href = "/usuarios/criar";
+                </script>
+            `);
+        }
+
+        // Matrícula só pode ter números
+        if (!/^[0-9]+$/.test(matricula)) {
+            return res.send(`
+                <script>
+                    alert("Erro: A matrícula deve conter apenas números!");
+                    window.location.href = "/usuarios/criar";
+                </script>
+            `);
+        }
+
+        // Email válido
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            return res.send(`
+                <script>
+                    alert("Erro: Informe um email válido!");
+                    window.location.href = "/usuarios/criar";
+                </script>
+            `);
+        }
+
         await Usuario.create({ nome, matricula, email });
         res.redirect('/usuarios');
     },
@@ -26,6 +59,34 @@ module.exports = {
 
     async editar(req, res) {
         const { id_usuario, nome, matricula, email } = req.body;
+
+
+        if (!/^[A-Za-zÀ-ÿ\s]+$/.test(nome)) {
+            return res.send(`
+                <script>
+                    alert("Erro: O nome não pode conter números ou caracteres inválidos!");
+                    window.location.href = "/usuarios";
+                </script>
+            `);
+        }
+
+        if (!/^[0-9]+$/.test(matricula)) {
+            return res.send(`
+                <script>
+                    alert("Erro: A matrícula deve conter apenas números!");
+                    window.location.href = "/usuarios";
+                </script>
+            `);
+        }
+
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            return res.send(`
+                <script>
+                    alert("Erro: Informe um email válido!");
+                    window.location.href = "/usuarios";
+                </script>
+            `);
+        }
 
         try {
             await Usuario.update(

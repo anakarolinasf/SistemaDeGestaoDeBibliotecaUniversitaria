@@ -14,6 +14,36 @@ module.exports = {
 
     async salvar(req, res) {
         const { titulo, autor, ano_publicacao, categoria } = req.body;
+
+        // === VALIDAÇÕES ===
+
+        if (!titulo || titulo.trim() === "") {
+            return res.send(`
+                <script>
+                    alert("Erro: O título do livro não pode ser vazio!");
+                    window.location.href = "/livros/criar";
+                </script>
+            `);
+        }
+
+        if (autor && !/^[A-Za-zÀ-ÿ\s]+$/.test(autor)) {
+            return res.send(`
+                <script>
+                    alert("Erro: O autor deve conter apenas letras!");
+                    window.location.href = "/livros/criar";
+                </script>
+            `);
+        }
+
+        if (ano_publicacao && !/^[0-9]+$/.test(ano_publicacao)) {
+            return res.send(`
+                <script>
+                    alert("Erro: O ano de publicação deve ser apenas números!");
+                    window.location.href = "/livros/criar";
+                </script>
+            `);
+        }
+
         await Livro.create({ titulo, autor, ano_publicacao, categoria });
         res.redirect('/livros');
     },
@@ -26,6 +56,34 @@ module.exports = {
 
     async editar(req, res) {
         const { id_livro, titulo, autor, ano_publicacao, categoria } = req.body;
+
+        // === VALIDAÇÕES ===
+        if (!titulo || titulo.trim() === "") {
+            return res.send(`
+                <script>
+                    alert("Erro: O título do livro não pode ser vazio!");
+                    window.location.href = "/livros";
+                </script>
+            `);
+        }
+
+        if (autor && !/^[A-Za-zÀ-ÿ\s]+$/.test(autor)) {
+            return res.send(`
+                <script>
+                    alert("Erro: O autor deve conter apenas letras!");
+                    window.location.href = "/livros";
+                </script>
+            `);
+        }
+
+        if (ano_publicacao && !/^[0-9]+$/.test(ano_publicacao)) {
+            return res.send(`
+                <script>
+                    alert("Erro: O ano de publicação deve conter apenas números!");
+                    window.location.href = "/livros";
+                </script>
+            `);
+        }
 
         try {
             await Livro.update(

@@ -48,8 +48,8 @@ app.listen(3000, async () => {
     try {
         await db.authenticate();
         console.log("Conectado ao MySQL");
-        console.log("🚀 Rodando em http://localhost:3000");
+        console.log("Rodando em http://localhost:3000");
     } catch (error) {
-        console.error("❌ Erro no banco:", error);
+        console.error("Erro no banco:", error);
     }
 });

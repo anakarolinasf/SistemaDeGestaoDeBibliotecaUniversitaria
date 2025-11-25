@@ -11,10 +11,14 @@
     
     <form action="/usuarios/salvar" method="POST">
         <label>Nome Completo</label>
-        <input type="text" name="nome" required placeholder="Seu nome">
+        <input type="text" name="nome" required 
+               oninput="this.value = this.value.replace(/[0-9]/g, '')"
+               placeholder="Apenas letras">
 
         <label>Matrícula</label>
-        <input type="text" name="matricula" required placeholder="Ex: 2210505">
+        <input type="text" name="matricula" required 
+               oninput="this.value = this.value.replace(/\D/g, '')"
+               placeholder="Apenas números"
 
         <label>Email Institucional</label>
         <input type="email" name="email" required placeholder="aluno@unifor.br">

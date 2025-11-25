@@ -13,10 +13,12 @@
         <input type="hidden" name="id_usuario" value="<%= usuario.id_usuario || usuario.id %>">
 
         <label>Nome Completo</label>
-        <input type="text" name="nome" value="<%= usuario.nome %>" required>
+        <input type="text" name="nome" value="<%= usuario.nome %>" required
+               oninput="this.value = this.value.replace(/[0-9]/g, '')">
 
         <label>Matrícula</label>
-        <input type="text" name="matricula" value="<%= usuario.matricula %>" required>
+        <input type="text" name="matricula" value="<%= usuario.matricula %>" required
+               oninput="this.value = this.value.replace(/\D/g, '')">
 
         <label>Email</label>
         <input type="email" name="email" value="<%= usuario.email %>" required>
