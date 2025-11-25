@@ -3,9 +3,9 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const db = require('./models/db');
 
-const usuarioController = require('./controllers/usuarioController');
-const livroController = require('./controllers/livroController');
-const emprestimoController = require('./controllers/emprestimoController');
+const usuariosRouter = require('./routes/usuarios');
+const livrosRouter = require('./routes/livros');
+const emprestimosRouter = require('./routes/emprestimos');
 
 const app = express();
 
@@ -20,29 +20,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req, res) => res.render('home/index'));
 
-// Usuário
-app.get('/usuarios', usuarioController.listar);
-app.get('/usuarios/criar', usuarioController.criarForm);
-app.post('/usuarios/salvar', usuarioController.salvar);
-app.get('/usuarios/editar/:id', usuarioController.editarForm);
-app.post('/usuarios/editar', usuarioController.editar);
-app.get('/usuarios/deletar/:id', usuarioController.deletar);
-
-// Livro
-app.get('/livros', livroController.listar);
-app.get('/livros/criar', livroController.criarForm);
-app.post('/livros/salvar', livroController.salvar);
-app.get('/livros/editar/:id', livroController.editarForm);
-app.post('/livros/editar', livroController.editar);
-app.get('/livros/deletar/:id', livroController.deletar);
-
-// Empréstimo
-app.get('/emprestimos', emprestimoController.listar);
-app.get('/emprestimos/criar', emprestimoController.criarForm);
-app.post('/emprestimos/salvar', emprestimoController.salvar);
-app.get('/emprestimos/editar/:id', emprestimoController.editarForm);
-app.post('/emprestimos/editar', emprestimoController.editar);
-app.get('/emprestimos/devolver/:id', emprestimoController.devolver);
+// modular routers
+app.use('/usuarios', usuariosRouter);
+app.use('/livros', livrosRouter);
+app.use('/emprestimos', emprestimosRouter);
 
 app.listen(3000, async () => {
     try {

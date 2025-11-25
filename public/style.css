@@ -235,3 +235,71 @@ body > a:last-child:hover {
 .warning[role="alert"] {
     box-shadow: 0 4px 10px rgba(255, 139, 148, 0.15);
 }
+
+/* Icon styles */
+.page-icon {
+    width: 28px;
+    height: 28px;
+    vertical-align: middle;
+    margin-right: 10px;
+    filter: none;
+}
+
+/* Size helper classes for icons */
+.page-icon--large {
+    width: 48px;
+    height: 48px;
+}
+.page-icon--medium {
+    width: 32px;
+    height: 32px;
+}
+
+/* Home page styles */
+.home-hero {
+    text-align: center;
+    margin-bottom: 36px;
+}
+.home-hero h1 {
+    font-size: 2.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+.home-hero .subtitle {
+    color: #666;
+    font-size: 1.05rem;
+    margin-top: 6px;
+}
+
+.home-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto 40px auto;
+    padding: 0 10px;
+    list-style: none;
+}
+.home-grid li a { text-decoration: none; color: inherit; }
+.home-card {
+    background: linear-gradient(180deg, #ffffff 0%, #fffafc 100%);
+    border-radius: 14px;
+    padding: 22px 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    box-shadow: 0 8px 18px rgba(203,178,214,0.15);
+    transition: transform 200ms ease, box-shadow 200ms ease;
+    border: 1px solid #f3e9f4;
+}
+.home-card:hover { transform: translateY(-6px); box-shadow: 0 12px 26px rgba(203,178,214,0.22); }
+.home-card .card-icon { width: 56px; height: 56px; margin: 0; }
+.home-card .card-label { font-weight: 700; color: var(--primary-color); margin-top: 4px; }
+
+/* Ensure images inside buttons/links don't overflow */
+.home-card img { display: block; }
